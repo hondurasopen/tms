@@ -1,0 +1,62 @@
+<openerp>
+<data>
+    <record model="ir.ui.view" id="tms_view_flee_sale_form">
+      <field name="name">TMS sale.fleet.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+           <field name="client_order_ref" position="after">
+				<field name="es_flete_interno"/>
+	  			<field name="transportista_id" attrs="{'invisible': [('es_flete_interno', '=', False)], 'required': [('es_flete_interno', '=', True)]}"/>
+				<field name="empleado_id" attrs="{'invisible': [('es_flete_interno', '=', True)], 'required': [('es_flete_interno', '=', False)]}"/>
+		   </field>
+		  <xpath expr="//page[@string='Other Information']" position="after">
+           <page string="Anticipos de combustible">
+            <form string="Anticipo de combustible">
+			<group colspan="4"> 
+			  <group cols="2">
+				<field name="purchase_id"/>
+			  </group>         
+			  <group cols="2">
+    			<button name="create_invoice" class="oe_highlight" string="Crea Orden de Compra" type="object" colspan="4" /><!--attrs="{'invisible': [('invoice_id', '!=', False)]}"-->
+			  </group>
+			</group>
+				<field name="sale_line_fleet_ids" domain='[("type_anticipo","=","combustible")]'>
+			    	<tree string="Rutas de Envio" editable="bottom">
+				 		<field name="transportista_id" />
+						<field name="product_id" />
+						<field name="qty_galones"/>
+						<field name="costo_galon"/>
+						<field name="total" sum="Total"/>
+						<field name="name"/>
+						<field name="date"/>
+			  		    </tree>			
+          		</field>
+           
+		     </form>
+        	</page>
+			<page string="Anticipo a transportista"  attrs="{'invisible': [('es_flete_interno', '=', False)]}">
+            <form string="Anticipo de flete">
+			<group colspan="4">               
+			  <group cols="2">
+    			<field name="total_transportista"/>
+			  </group>
+			</group>
+				<field name="sale_line_fleet_ids" domain='[("type_anticipo","=","anticipo")]'>
+			    	<tree string="Rutas de Envio" editable="bottom">
+				 		<field name="transportista_id" />
+						<field name="product_id" />
+						<field name="total" sum="Total"/>
+						<field name="name"/>
+						<field name="date"/>
+			  		    </tree>			
+          		</field>
+           
+		     </form>
+        	</page>
+   		</xpath> 
+      </field>
+    </record>
+
+</data>
+</openerp>

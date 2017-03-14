@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+<data>
+<record model="ir.ui.view" id="partner_transportista_fleet_form_view">
+    <field name="name">partner.transportista.fleet.form</field>
+    <field name="model">res.partner</field>
+	<field name="inherit_id" ref="base.view_partner_form"/>
+	  <field name="arch" type="xml">
+	       	<field name="user_id" position="after">
+	          	<field name="transportista"/>	
+             </field>
+		
+			
+
+      </field>
+</record>
+<!--  Accion para transportistas 
+<record model="ir.actions.act_window" id="partner_transportista_action">
+   <field name="name">Transportistas</field>
+   <field name="res_model">res.partner</field>
+   <field name="view_type">form</field>
+   <field name="view_model">kanban,tree,form</field>
+             <field name="domain">[('transportista','=',True)]</field>
+            <field name="context">{'default_customer': 0,'default_transportista': 1, 'default_supplier': 1, 'default_is_company': 1}</field>
+   <field name="help" type="html">
+   <p class="oe_view_nocontent_create">Crear primer transportista</p>
+   </field>
+   </record>
+
+<menuitem name="Transportista" id="menu_transportista_managment" parent="menu_cost_configuration" action="partner_transportista_action"          groups="base.group_sale_manager" sequence="15"/>-->
+ </data>
+</openerp>
