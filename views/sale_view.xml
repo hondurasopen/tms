@@ -18,15 +18,14 @@
 				<field name="purchase_id"/>
 			  </group>         
 			  <group cols="2">
-    			<button name="create_invoice" class="oe_highlight" string="Crea Orden de Compra" type="object" colspan="4" /><!--attrs="{'invisible': [('invoice_id', '!=', False)]}"-->
+    			<button name="create_purchase" class="oe_highlight" string="Crea Orden de Compra" type="object" colspan="4" /><!--attrs="{'invisible': [('invoice_id', '!=', False)]}"-->
 			  </group>
 			</group>
 				<field name="sale_line_fleet_ids" domain='[("type_anticipo","=","combustible")]'>
-			    	<tree string="Rutas de Envio" editable="bottom">
+			    	<tree string="Combustible" editable="bottom">
 				 		<field name="transportista_id" />
-						<field name="product_id" />
-						<field name="qty_galones"/>
-						<field name="costo_galon"/>
+						<field name="product_id" required="1"/>
+						<field name="proveedor_id"/>
 						<field name="total" sum="Total"/>
 						<field name="name"/>
 						<field name="date"/>
@@ -38,17 +37,22 @@
 			<page string="Anticipo a transportista"  attrs="{'invisible': [('es_flete_interno', '=', False)]}">
             <form string="Anticipo de flete">
 			<group colspan="4">               
-			  <group cols="2">
-    			<field name="total_transportista"/>
-			  </group>
+			   <group cols="2">
+    			 <field name="total_transportista"/>
+				 <field name="total_anticipo"/>
+				<field name="invoice_id" />
+			   </group>
+  			   <group cols="2">
+				  <button name="create_invoice" class="oe_highlight" string="Crea liquidación" type="object" colspan="4" />
+			   </group>
 			</group>
-				<field name="sale_line_fleet_ids" domain='[("type_anticipo","=","anticipo")]'>
-			    	<tree string="Rutas de Envio" editable="bottom">
+				<field name="fleet_anticipo_ids" domain='[("type_anticipo","=","anticipo")]'>
+			    	<tree string="Anticipo" editable="bottom">
 				 		<field name="transportista_id" />
-						<field name="product_id" />
+						<field name="advance_account_id" />
 						<field name="total" sum="Total"/>
 						<field name="name"/>
-						<field name="date"/>
+						<field name="fecha"/>
 			  		    </tree>			
           		</field>
            

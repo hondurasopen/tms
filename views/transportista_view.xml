@@ -9,8 +9,9 @@
 	       	<field name="user_id" position="after">
 	          	<field name="transportista"/>	
              </field>
-		
-			
+			  <xpath expr="//field[@name='property_account_payable']" position="after" >
+                        <field name="property_account_supplier_advance" attrs="{'required': [('transportista', '=', True)]}"/>
+              </xpath>
 
       </field>
 </record>
